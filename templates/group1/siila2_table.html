@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Siila2 Table</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/logs_table.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/4.9.3/css/tabulator.min.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/4.9.3/js/tabulator.min.js"></script>
+</head>
+<body>
+    <div id="menu-toggle" onclick="toggleMenu()">&#8594;</div>
+    <div class="menu-bar" id="menu-bar">
+        <h1>Siila2 Table</h1>
+		{% for table in tables %}
+			{% if table == 'Logs Table' %}
+				<a href="{{ url_for('logs_table.logs_table') }}">{{ table }}</a>
+			{% elif table == 'Siila1 Table' %}
+				<a href="{{ url_for('siila1_table.siila1_table') }}">{{ table }}</a>
+			{% elif table == 'Siila2 Table' %}
+				<a href="{{ url_for('siila2_table.siila2_table') }}">{{ table }}</a>
+			{% elif table == 'Siila3 Table' %}
+				<a href="{{ url_for('siila3_table.siila3_table') }}">{{ table }}</a>
+			{% elif table == 'Region Table' %}
+				<a href="{{ url_for('region_table.region_table') }}">{{ table }}</a>
+			{% elif table == 'Market Table' %}
+				<a href="{{ url_for('market_table.market_table') }}">{{ table }}</a>
+			{% elif table == 'Contact Table' %}
+				<a href="{{ url_for('contact_table.contact_table') }}">{{ table }}</a>
+			{% elif table == 'Cadastre Table' %}
+				<a href="{{ url_for('cadastre_table.cadastre_table') }}">{{ table }}</a>
+			{% elif table == 'Industry Table' %}
+				<a href="{{ url_for('industry_table.industry_table') }}">{{ table }}</a>
+			{% elif table == 'Prices Table' %}
+				<a href="{{ url_for('prices_table.prices_table') }}">{{ table }}</a>
+			{% elif table == 'History Table' %}
+				<a href="{{ url_for('history_table.history_table') }}">{{ table }}</a>
+			{% elif table == 'History Lateralizado' %}
+				<a href="{{ url_for('history_lateralizado.history_lateralizado') }}">{{ table }}</a>
+			{% else %}
+				<a href="{{ url_for('under_development') }}">{{ table }}</a>
+			{% endif %}
+		{% endfor %}
+        <img src="{{ url_for('static', filename='mainlogo.png') }}" style="position: absolute; bottom: 0; width: 100%;">
+    </div>
+    <div class="content">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+            <button class="refresh-button" onclick="window.location.reload()" style="background-color: #D3961C; color: white; border: none; padding: 5px 10px;">Refresh</button>
+            <input id="search" placeholder="Search..." style="margin-left: auto;">
+        </div>
+        <div id="siila2-table"></div> <!-- Change: Updated the ID to "siila2-table" -->
+    </div>
+    <script>
+    function toggleMenu() {
+        var menuBar = document.getElementById("menu-bar");
+        var menuToggle = document.getElementById("menu-toggle");
+
+        if (menuBar.style.width == "0px" || menuBar.style.width == "") {
+            menuBar.style.width = "200px";
+            menuToggle.innerHTML = "&#8592;";
+            $(".content").css("margin-left", "260px");
+        } else {
+            menuBar.style.width = "0";
+            menuToggle.innerHTML = "&#8594;";
+            $(".content").css("margin-left", "60px");
+        }
+    }
+    </script>
+    <script src="{{ url_for('static', filename='js/siila2_table.js') }}"></script> <!-- Change: Updated the JS file reference to "siila2_table.js" -->
+</body>
+</html>

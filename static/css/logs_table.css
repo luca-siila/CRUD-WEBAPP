@@ -1,0 +1,189 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid #5C87A3; 
+    padding: 13px;
+    font-size: 85%; 
+}
+
+th {
+    text-align: left;
+    background-color: #5C87A3;
+    color: white;
+}
+
+td:hover {
+    background-color: #D3961C;
+}
+
+a:hover, button:hover {
+    background-color: #D3961C;
+    cursor: pointer; /* change cursor on hover */
+}
+
+.menu-bar {
+    width: 0; /* Initial width is 0 */
+    position: fixed;
+    height: 100%;
+    background-color: #5C87A3;
+    border-right: 5px solid #D3961C;
+    transition: width 0.5s; /* Only transition the width */
+    z-index: 100;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+}
+
+
+.menu-bar h1 {
+    text-align: center;
+    color: #D3961C;
+}
+
+.menu-bar a {
+    color: white;
+    display: block;
+    padding: 5px 10px; /* Adjusted padding */
+    text-decoration: none;
+    width: 100%; /* Set width to 100% */
+    text-align: left; /* Left align the text */
+}
+
+.menu-bar a:hover {
+    background-color: #D3961C;
+    width: 100%; /* Ensure the full width is highlighted */
+}
+.menu-bar img {
+    bottom: 10px; /* Adjust the bottom positioning */
+    width: 100%;
+    max-width: 150px; /* Limit the maximum width */
+}
+
+#menu-toggle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 20px;
+    background: #D3961C; 
+    cursor: pointer;
+    font-size: 1.5em;
+    color: white;
+    text-align: center;
+    line-height: 20px;
+    z-index: 101;
+}
+
+.content {
+    margin-left: 60px;
+    padding: 10px;
+    transition: margin-left 0.5s;
+}
+
+.refresh-button {
+    cursor: pointer; /* change cursor on hover */
+}
+
+
+.modal {
+    display: none;  /* Initially hidden */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);  /* Semi-transparent background */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;  /* Centered with some spacing from the top */
+    padding: 20px;
+    border: 2px solid #D3961C;  /* Orange border */
+    width: 75%;  /* Adjusted to 3/4 screen width as you mentioned */
+    border-radius: 10px;  /* Rounded edges */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
+    overflow: auto;
+}
+
+.modal-header, .modal-footer {
+    padding: 10px 0;
+    background-color: #5C87A3;
+    color: white;
+    border-bottom: 2px solid #D3961C;  /* Orange border */
+}
+/* Style for selected row in modal */
+.modal-body tr.selected {
+    background-color: #D3961C; /* Orange highlight */
+}
+
+.modal-body {
+    padding: 10px 0;
+    max-height: 600px; /* Added this to set a maximum height */
+    overflow-y: auto;  /* Added this to enable vertical scrolling if content overflows */
+}
+
+/* Search box styling */
+.search-box {
+    padding: 5px;
+    border: 1px solid #5C87A3;
+    border-radius: 5px;
+    outline: none;
+    width: 200px;
+    margin-right: 10px;
+}
+
+/* OK and Cancel button styling */
+.modal-footer .modal-button, .modal-header .modal-button {
+    padding: 8px 15px;
+    background-color: #5C87A3;
+    border: none;
+    color: white;
+    font-size: 90%;
+    cursor: pointer;
+    border-radius: 5px;  /* Rounded edges */
+    margin: 5px;
+}
+
+.modal-footer .modal-button:hover, .modal-header .modal-button:hover {
+    background-color: #D3961C;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #D3961C;
+    cursor: pointer;
+}
+
+.modal-button {
+    padding: 10px 15px;
+    background-color: #5C87A3;
+    border: none;
+    color: white;
+    font-size: 90%;
+    cursor: pointer;
+}
+
+.modal-button:hover {
+    background-color: #D3961C;
+}
+/* Remove underline from the links and set color to black */
+
+#history-lateralizado-table {
+    width: 100%;
+    height: 90%; /* Adjust as needed */
+    overflow: auto; /* Enable horizontal scrolling */
+    overflow-x: scroll;
+}

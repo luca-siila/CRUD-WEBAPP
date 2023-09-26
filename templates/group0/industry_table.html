@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ current_table }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/logs_table.css') }}"> <!-- Updated CSS reference -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+</head>
+<body>
+    <div id="menu-toggle" onclick="toggleMenu()">&#8594;</div>
+    <div class="menu-bar" id="menu-bar">
+        <h1>{{ current_table }}</h1>
+		{% for table in tables %}
+			{% if table == 'Logs Table' %}
+				<a href="{{ url_for('logs_table.logs_table') }}">{{ table }}</a>
+			{% elif table == 'Siila1 Table' %}
+				<a href="{{ url_for('siila1_table.siila1_table') }}">{{ table }}</a>
+			{% elif table == 'Siila2 Table' %}
+				<a href="{{ url_for('siila2_table.siila2_table') }}">{{ table }}</a>
+			{% elif table == 'Siila3 Table' %}
+				<a href="{{ url_for('siila3_table.siila3_table') }}">{{ table }}</a>
+			{% elif table == 'Region Table' %}
+				<a href="{{ url_for('region_table.region_table') }}">{{ table }}</a>
+			{% elif table == 'Market Table' %}
+				<a href="{{ url_for('market_table.market_table') }}">{{ table }}</a>
+			{% elif table == 'Contact Table' %}
+				<a href="{{ url_for('contact_table.contact_table') }}">{{ table }}</a>
+			{% elif table == 'Cadastre Table' %}
+				<a href="{{ url_for('cadastre_table.cadastre_table') }}">{{ table }}</a>
+			{% elif table == 'Industry Table' %}
+				<a href="{{ url_for('industry_table.industry_table') }}">{{ table }}</a>
+			{% elif table == 'Prices Table' %}
+				<a href="{{ url_for('prices_table.prices_table') }}">{{ table }}</a>
+			{% elif table == 'History Table' %}
+				<a href="{{ url_for('history_table.history_table') }}">{{ table }}</a>
+			{% elif table == 'History Lateralizado' %}
+				<a href="{{ url_for('history_lateralizado.history_lateralizado') }}">{{ table }}</a>
+			{% else %}
+				<a href="{{ url_for('under_development') }}">{{ table }}</a>
+			{% endif %}
+		{% endfor %}
+        <img src="{{ url_for('static', filename='mainlogo.png') }}" style="position: absolute; bottom: 0; width: 100%;">
+    </div>
+    <div class="content">
+        <button class="refresh-button" onclick="window.location='{{ url_for('industry_table.refresh_industry_table') }}'" style="float: right; background-color: #FFCD03; color: white; border: none; padding: 5px 10px;">Refresh</button>
+        <table id="indsutryTable">
+			<thead>
+				<tr>
+					<th>INDUSTRY_ID</th>
+					<th>INDUSTRY_NAME</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for industry in data %}
+				<tr>
+					<td>{{ industry.INDUSTRY_ID }}</td>
+					<td>{{ industry.INDUSTRY_NAME }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+        </table>
+    </div>
+    <script>
+    $(document).ready(function () {
+        $('#indsutryTable').DataTable({
+            "order": [[ 0, "desc" ]]
+        });
+    });
+
+    function toggleMenu() {
+        var menuBar = document.getElementById("menu-bar");
+        var menuToggle = document.getElementById("menu-toggle");
+
+        if (menuBar.style.width == "0px" || menuBar.style.width == "") {
+            menuBar.style.width = "200px";
+            menuBar.style.opacity = "1"; // Updated code
+            menuToggle.innerHTML = "&#8592;";
+            $(".content").css("margin-left", "260px");
+        } else {
+            menuBar.style.width = "0";
+            menuBar.style.opacity = "0"; // Updated code
+            menuToggle.innerHTML = "&#8594;";
+            $(".content").css("margin-left", "60px");
+        }
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+    <h1 class="title">Abastecimento Web</h1> <!-- Moved title -->
+    <div class="container">
+        <form id="login-form">
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <!-- Added logo -->
+    <img id="logo" src="{{ url_for('static', filename='mainlogo.png') }}">
+    
+    <script>
+        const form = document.querySelector('#login-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            fetch('/login', {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = '/logs_table';
+                } else {
+                    alert('Invalid credentials');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
